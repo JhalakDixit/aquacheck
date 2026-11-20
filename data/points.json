@@ -1,1 +1,90 @@
-
+{
+  "mess": {
+    "name": "Mess",
+    "description": "Four drinking-water points are included in the initial Mess pilot.",
+    "points": [
+      {
+        "id": "MES-01",
+        "name": "Mess – Point 1",
+        "area": "Upstairs · Point 1"
+      },
+      {
+        "id": "MES-02",
+        "name": "Mess – Point 2",
+        "area": "Upstairs · Point 2"
+      },
+      {
+        "id": "MES-03",
+        "name": "Mess – Point 3",
+        "area": "Downstairs · Point 1"
+      },
+      {
+        "id": "MES-04",
+        "name": "Mess – Point 4",
+        "area": "Downstairs · Point 2"
+      }
+    ]
+  },
+  "hostel": {
+    "name": "Hostel",
+    "description": "Nine drinking-water points are included, one on each of the nine floors.",
+    "points": [
+      {
+        "id": "HOS-01",
+        "name": "Hostel – Floor 1",
+        "area": "Floor 1"
+      },
+      {
+        "id": "HOS-02",
+        "name": "Hostel – Floor 2",
+        "area": "Floor 2"
+      },
+      {
+        "id": "HOS-03",
+        "name": "Hostel – Floor 3",
+        "area": "Floor 3"
+      },
+      {
+        "id": "HOS-04",
+        "name": "Hostel – Floor 4",
+        "area": "Floor 4"
+      },
+      {
+        "id": "HOS-05",
+        "name": "Hostel – Floor 5",
+        "area": "Floor 5"
+      },
+      {
+        "id": "HOS-06",
+        "name": "Hostel – Floor 6",
+        "area": "Floor 6"
+      },
+      {
+        "id": "HOS-07",
+        "name": "Hostel – Floor 7",
+        "area": "Floor 7"
+      },
+      {
+        "id": "HOS-08",
+        "name": "Hostel – Floor 8",
+        "area": "Floor 8"
+      },
+      {
+        "id": "HOS-09",
+        "name": "Hostel – Floor 9",
+        "area": "Floor 9"
+      }
+    ]
+  },
+  "library": {
+    "name": "Library",
+    "description": "One drinking-water point is included in the initial Library pilot.",
+    "points": [
+      {
+        "id": "LIB-01",
+        "name": "Library – Point 1",
+        "area": "Library"
+      }
+    ]
+  }
+}

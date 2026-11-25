@@ -3,45 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Location Water Points | AQUACHECK</title>
+  <meta name="theme-color" content="#073b4c">
+  <title>Water Points | AQUACHECK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/location.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">AQUA<span>CHECK</span></a>
-    <a class="back-link" href="index.html">← All locations</a>
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>AQUA<span class="brand-accent">CHECK</span></span></a>
+    <nav class="nav-links"><a href="index.html#locations">All locations</a><a href="index.html#about">About</a></nav>
+    <a class="header-cta" href="index.html">← Back home</a>
   </header>
-
-  <main class="location-main">
-    <section class="location-intro">
-      <p class="eyebrow">AQUACHECK LOCATION DIRECTORY</p>
-      <h1 id="location-title">Loading location…</h1>
-      <p id="location-description" class="hero-copy"></p>
+  <main class="location-page">
+    <section class="location-banner" id="location-banner">
+      <div class="location-banner-content"><a class="breadcrumb" href="index.html">Home <span>›</span> Locations</a><span class="eyebrow light-eyebrow">AQUACHECK LOCATION DIRECTORY</span><h1 id="location-title">Loading location…</h1><p id="location-description" class="banner-copy"></p><div class="banner-meta"><span>⌖ Bennett University</span><span>·</span><span id="point-count">Loading points…</span></div></div>
     </section>
-
-    <section>
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">DRINKING-WATER POINTS</p>
-          <h2>Choose a point</h2>
-        </div>
-      </div>
-      <div id="point-list" class="point-grid"></div>
+    <section class="points-section">
+      <div class="section-heading"><div><span class="eyebrow">LOCATION DIRECTORY</span><h2>Choose a <span class="heading-accent">water point.</span></h2><p class="section-subtitle">Select a point to view its information and report status.</p></div><label class="search-box"><span>⌕</span><input id="point-search" type="search" placeholder="Search by point or ID…" aria-label="Search water points"></label></div>
+      <div id="point-list" class="point-grid" aria-live="polite"></div>
+      <p class="empty-search" id="empty-points" hidden>No water points match your search.</p>
     </section>
-
-    <section id="point-details" class="details-panel" hidden>
-      <button id="close-details" class="close-button" type="button">Close ×</button>
-      <p class="eyebrow">WATER-POINT INFORMATION</p>
-      <h2 id="detail-name"></h2>
-      <div id="detail-content"></div>
+    <section id="point-details" class="details-panel" hidden aria-live="polite">
+      <button id="close-details" class="close-button" type="button" aria-label="Close details">×</button>
+      <span class="eyebrow">WATER-POINT INFORMATION</span><h2 id="detail-name"></h2><div id="detail-content"></div>
     </section>
-
-    <p class="data-note">Data status will be updated when authorised reports are received and checked. No sample readings on this demonstration site should be treated as campus results.</p>
+    <section class="report-reminder"><span class="reminder-icon">✦</span><div><strong>Why does report status matter?</strong><p>Clear status labels help distinguish information that is available from results that are still awaited. Only properly documented and verified reports should be interpreted as water-quality findings.</p></div></section>
+    <p class="data-note">Demonstration directory · No sample readings on this website should be treated as actual campus test results.</p>
   </main>
-
-  <footer>
-    <p>AQUACHECK · Verified information matters</p>
-  </footer>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">A</span><span>AQUA<span class="brand-accent">CHECK</span></span></a><p>A student project supporting access to water-quality information.</p><span class="footer-sdg">SDG 6 · CLEAN WATER & SANITATION</span></footer>
 </body>
 </html>

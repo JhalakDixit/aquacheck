@@ -3,61 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AQUACHECK | Drinking Water Information</title>
+  <meta name="theme-color" content="#073b4c">
+  <meta name="description" content="AQUACHECK makes campus drinking-water information easier to access through location-based QR codes.">
+  <title>AQUACHECK | Water Information, Made Clear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/home.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">AQUA<span>CHECK</span></a>
-    <span class="sdg-label">SDG 6 · Clean Water and Sanitation</span>
+    <a class="brand" href="index.html" aria-label="AQUACHECK home"><span class="brand-mark">A</span><span>AQUA<span class="brand-accent">CHECK</span></span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#locations">Locations</a><a href="#how-it-works">How it works</a><a href="#about">About</a>
+    </nav>
+    <a class="header-cta" href="#locations">Explore points <span>↗</span></a>
   </header>
 
   <main>
-    <section class="hero">
-      <p class="eyebrow">BENNETT UNIVERSITY · CAMPUS INFORMATION PROJECT</p>
-      <h1>Know your drinking water.<br><span>Access verified information.</span></h1>
-      <p class="hero-copy">A simple QR-based system to make available drinking-water quality reports easier to find and understand.</p>
+    <section class="hero hero-home">
+      <div class="hero-content">
+        <span class="eyebrow light-eyebrow"><span class="pulse-dot"></span> BENNETT UNIVERSITY · SDG 6 PROJECT</span>
+        <h1>Every drop has a story.<br><span>Know what you drink.</span></h1>
+        <p class="hero-copy">A simpler way to access drinking-water information across campus. Scan a location QR code, explore the point, and find the information that matters.</p>
+        <div class="hero-actions"><a class="button button-light" href="#locations">Explore water points <span>→</span></a><a class="text-link light-link" href="#how-it-works">See how it works</a></div>
+        <div class="hero-proof"><div class="proof-avatars"><span>💧</span><span>♻️</span><span>🌿</span></div><p>Awareness · Access · Responsible water use</p></div>
+      </div>
+      <div class="hero-visual" aria-label="Clear water pouring into a glass">
+        <div class="hero-image"></div>
+        <div class="floating-note"><span class="note-icon">⌁</span><span><strong>Water information</strong><small>Made easier to access</small></span></div>
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      </div>
+      <div class="hero-wave"></div>
     </section>
 
-    <section class="locations-section">
+    <section class="stats-strip" aria-label="Project coverage">
+      <div><strong>3</strong><span>Campus zones</span></div><i></i><div><strong>14</strong><span>Listed water points</span></div><i></i><div><strong>1</strong><span>Simple QR-based directory</span></div>
+    </section>
+
+    <section class="section locations-section" id="locations">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">EXPLORE LOCATIONS</p>
-          <h2>Select a location</h2>
+        <div><span class="eyebrow">FIND YOUR WATER POINT</span><h2>Explore campus <span class="heading-accent">locations.</span></h2><p class="section-subtitle">Choose the place where you are collecting drinking water.</p></div>
+        <label class="search-box"><span>⌕</span><input id="location-search" type="search" placeholder="Search a location…" aria-label="Search locations"></label>
+      </div>
+      <div class="location-grid" id="location-grid">
+        <a class="location-card mess-card" data-search="mess dining food" href="location.html?place=mess"><div class="card-image"></div><div class="card-overlay"></div><div class="card-content"><span class="location-tag">DINING AREA</span><span class="location-icon">🍽️</span><h3>Mess</h3><p>Explore 4 listed drinking-water points.</p><span class="card-link">Explore points <b>↗</b></span></div></a>
+        <a class="location-card hostel-card" data-search="hostel residence floors" href="location.html?place=hostel"><div class="card-image"></div><div class="card-overlay"></div><div class="card-content"><span class="location-tag">RESIDENTIAL</span><span class="location-icon">🏢</span><h3>Hostel</h3><p>Explore 9 listed drinking-water points.</p><span class="card-link">Explore points <b>↗</b></span></div></a>
+        <a class="location-card library-card" data-search="library study learning" href="location.html?place=library"><div class="card-image"></div><div class="card-overlay"></div><div class="card-content"><span class="location-tag">LEARNING SPACE</span><span class="location-icon">📚</span><h3>Library</h3><p>Explore 1 listed drinking-water point.</p><span class="card-link">Explore points <b>↗</b></span></div></a>
+      </div>
+      <p class="empty-search" id="empty-search" hidden>No locations match your search. Try “Library”, “Hostel” or “Mess”.</p>
+    </section>
+
+    <section class="how-section" id="how-it-works">
+      <div class="section section-inner">
+        <div class="section-heading centered-heading"><div><span class="eyebrow">SIMPLE BY DESIGN</span><h2>How <span class="heading-accent">AQUACHECK</span> works.</h2><p class="section-subtitle">A few simple steps to reach the right location information.</p></div></div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-number">01</span><div class="step-icon">⌖</div><h3>Choose a location</h3><p>Select Library, Hostel or Mess from the campus directory.</p></article>
+          <article class="step-card"><span class="step-number">02</span><div class="step-icon">▦</div><h3>Scan the QR code</h3><p>Use the location-specific QR code to open its information page.</p></article>
+          <article class="step-card"><span class="step-number">03</span><div class="step-icon">◉</div><h3>Explore the details</h3><p>Find the point ID, report status and available verified information.</p></article>
         </div>
-        <p class="section-note">Choose the place where you are collecting drinking water.</p>
-      </div>
-
-      <div class="location-grid">
-        <a class="location-card" href="location.html?place=mess">
-          <span class="location-icon">🍽️</span>
-          <h3>Mess</h3>
-          <p>4 drinking-water points</p>
-          <span class="card-link">View water points →</span>
-        </a>
-        <a class="location-card" href="location.html?place=hostel">
-          <span class="location-icon">🏢</span>
-          <h3>Hostel</h3>
-          <p>9 drinking-water points</p>
-          <span class="card-link">View water points →</span>
-        </a>
-        <a class="location-card" href="location.html?place=library">
-          <span class="location-icon">📚</span>
-          <h3>Library</h3>
-          <p>1 drinking-water point</p>
-          <span class="card-link">View water points →</span>
-        </a>
       </div>
     </section>
 
-    <section class="notice">
-      <strong>About the information</strong>
-      <p>Only verified reports and their documented sources will be presented as actual water-quality information. A missing report is not evidence that water is either safe or unsafe.</p>
+    <section class="section about-section" id="about">
+      <div class="about-visual"><img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1000&q=85" alt="Fresh clear water flowing over stones" loading="lazy"><span class="image-caption">AWARENESS STARTS WITH ACCESS</span></div>
+      <div class="about-copy"><span class="eyebrow">OUR PURPOSE · SDG 6</span><h2>Better information.<br><span class="heading-accent">More mindful choices.</span></h2><p>AQUACHECK is a student-led campus information project inspired by Sustainable Development Goal 6: Clean Water and Sanitation.</p><p>Our aim is to make water-point information easier to find and understand, while encouraging awareness and responsible water use.</p><div class="purpose-points"><span>✓ Location-based information</span><span>✓ Clear report-status communication</span><span>✓ Scope to expand campus monitoring</span></div></div>
     </section>
+
+    <section class="notice notice-home"><span class="notice-symbol">i</span><div><strong>Important information about reports</strong><p>This website is an information directory. Water-quality results will be displayed as actual findings only when authorised, documented reports have been received and checked. A missing report does not indicate that water is safe or unsafe.</p></div></section>
   </main>
 
-  <footer>
-    <p>AQUACHECK · A student project supporting access to water-quality information</p>
-  </footer>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">A</span><span>AQUA<span class="brand-accent">CHECK</span></span></a><p>A student project supporting access to water-quality information.</p><span class="footer-sdg">SDG 6 · CLEAN WATER & SANITATION</span></footer>
 </body>
 </html>

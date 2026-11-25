@@ -1,60 +1,109 @@
-// AQUACHECK location page
-// This file reads the selected location from the page URL and displays its points.
+// AQUACHECK location directory: search, point cards and accessible detail panel.
+const pointList = document.getElementById("point-list");
+const detailsPanel = document.getElementById("point-details");
+let allPoints = [];
+
 fetch("data/points.json")
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) throw new Error("Could not load the water-point directory.");
+    return response.json();
+  })
   .then(data => {
     const params = new URLSearchParams(window.location.search);
     const place = params.get("place") || "mess";
-    const location = data[place];
-
+    const locationData = data[place];
     const title = document.getElementById("location-title");
     const description = document.getElementById("location-description");
-    const list = document.getElementById("point-list");
 
-    if (!location) {
+    if (!locationData) {
       title.textContent = "Location not found";
       description.textContent = "Please return to the homepage and select a location.";
+      document.getElementById("point-count").textContent = "No location selected";
       return;
     }
 
-    document.title = location.name + " | AQUACHECK";
-    title.textContent = location.name;
-    description.textContent = location.description;
+    document.title = locationData.name + " | AQUACHECK";
+    title.textContent = locationData.name;
+    description.textContent = locationData.description;
+    allPoints = locationData.points;
+    document.getElementById("point-count").textContent = allPoints.length + (allPoints.length === 1 ? " listed water point" : " listed water points");
+    renderPoints(allPoints);
 
-    location.points.forEach(point => {
-      const card = document.createElement("article");
-      card.className = "point-card";
-      card.innerHTML = `
-        <h3>${point.name}</h3>
-        <p>${point.area} · ID: ${point.id}</p>
-        <span class="status">Verified report awaited</span>
-        <p style="margin-top:14px"><button class="action-button" type="button">View information</button></p>
-      `;
-      card.querySelector("button").addEventListener("click", () => showDetails(point));
-      list.appendChild(card);
+    const search = document.getElementById("point-search");
+    search.addEventListener("input", () => {
+      const query = search.value.trim().toLowerCase();
+      const filtered = allPoints.filter(point => (point.name + " " + point.id + " " + point.area).toLowerCase().includes(query));
+      renderPoints(filtered);
+      document.getElementById("empty-points").hidden = filtered.length !== 0;
     });
   })
   .catch(() => {
     document.getElementById("location-title").textContent = "Unable to load water points";
-    document.getElementById("location-description").textContent =
-      "Please open this project using a local web server or its hosted website.";
+    document.getElementById("location-description").textContent = "Please open this project using its hosted website or a local web server.";
   });
 
+function renderPoints(points) {
+  pointList.replaceChildren();
+  points.forEach((point, index) => {
+    const card = document.createElement("article");
+    card.className = "point-card";
+    const top = document.createElement("div");
+    top.className = "point-card-top";
+    const icon = document.createElement("span");
+    icon.className = "point-icon";
+    icon.textContent = "⌖";
+    const id = document.createElement("span");
+    id.className = "point-id";
+    id.textContent = point.id;
+    top.append(icon, id);
+    const heading = document.createElement("h3");
+    heading.textContent = point.name;
+    const area = document.createElement("p");
+    area.textContent = point.area;
+    const status = document.createElement("span");
+    status.className = "status";
+    status.textContent = "Verified report awaited";
+    const button = document.createElement("button");
+    button.className = "action-button";
+    button.type = "button";
+    button.innerHTML = '<span>View point information</span><span aria-hidden="true">→</span>';
+    button.addEventListener("click", () => showDetails(point));
+    card.append(top, heading, area, status, button);
+    card.style.animationDelay = (index * 45) + "ms";
+    pointList.appendChild(card);
+  });
+}
+
 function showDetails(point) {
-  const panel = document.getElementById("point-details");
-  document.getElementById("detail-name").textContent = point.name + " (" + point.id + ")";
-  document.getElementById("detail-content").innerHTML = `
-    <div class="detail-row"><strong>Location</strong><span>${point.area}</span></div>
-    <div class="detail-row"><strong>Report status</strong><span>Awaiting verified report</span></div>
-    <div class="detail-row"><strong>Test date</strong><span>Not provided yet</span></div>
-    <div class="detail-row"><strong>Report source</strong><span>Not provided yet</span></div>
-    <div class="detail-row"><strong>Water-quality results</strong><span>Will appear here after the relevant report is received and checked.</span></div>
-    <div class="detail-row"><strong>Important note</strong><span>This page does not determine whether water is safe or unsafe. Please refer to an authorised, current laboratory report.</span></div>
-  `;
-  panel.hidden = false;
-  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("detail-name").textContent = point.name + " · " + point.id;
+  const content = document.getElementById("detail-content");
+  content.replaceChildren();
+  const rows = [
+    ["Location", point.area, false],
+    ["Point identification", point.id, false],
+    ["Report status", "Awaiting an authorised, verified report", false],
+    ["Test date", "Not provided yet", false],
+    ["Report source", "Not provided yet", false],
+    ["Water-quality results", "Results will appear here only after the relevant report is received and checked.", true],
+    ["Important note", "This page does not determine whether water is safe or unsafe. Please refer to an authorised, current laboratory report.", true]
+  ];
+  const grid = document.createElement("div");
+  grid.className = "detail-grid";
+  rows.forEach(([label, value, wide]) => {
+    const row = document.createElement("div");
+    row.className = "detail-row" + (wide ? " wide" : "");
+    const strong = document.createElement("strong");
+    strong.textContent = label;
+    const span = document.createElement("span");
+    span.textContent = value;
+    row.append(strong, span);
+    grid.appendChild(row);
+  });
+  content.appendChild(grid);
+  detailsPanel.hidden = false;
+  detailsPanel.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 document.getElementById("close-details").addEventListener("click", () => {
-  document.getElementById("point-details").hidden = true;
+  detailsPanel.hidden = true;
 });
